@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/admin/layout">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <!-- Google Font: Source Sans Pro -->
+        <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback}"/>
+        <!-- Font Awesome -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/fontawesome-free/css/all.min.css}"/>
+        <!-- jsGrid -->
+        <link rel="stylesheet" th:href="@{/admin/plugins/jsgrid/jsgrid.min.css}"/>
+        <link rel="stylesheet" th:href="@{/admin/plugins/jsgrid/jsgrid-theme.min.css}"/>
+        <!-- Theme style -->
+        <link rel="stylesheet" th:href="@{/admin/dist/css/adminlte.min.css}"/>
+    </head>
+    <body>
+        <div layout:fragment="content">
+
+            <div class="content-wrapper" style="min-height: 1302.4px;">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <div class="container-fluid">
+                        <div class="row mb-2">
+                            <div class="col-sm-6">
+                                <h1>Customer Management</h1>
+                            </div>
+                        </div>
+                    </div><!-- /.container-fluid -->
+                </section>
+
+                <div>
+                    <a th:href="@{http://localhost:8888/client/admin/customercontroller/gotocreate}" class="btn btn-primary">Create new Customer</a>
+                </div>
+
+                <!-- Main content -->
+                <section class="content">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div id="jsGrid1" class="jsgrid">
+                                <div class="jsgrid-grid-header jsgrid-header-scrollbar">
+                                    <table class="jsgrid-table" style="text-align: center">
+                                        <thead>
+                                            <tr class="jsgrid-header-row">
+                                                <th class="jsgrid-header-cell jsgrid-header-sortable" >Username</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-right jsgrid-header-sortable" >Email</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Address</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Phone</th>
+                                                <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" >Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="user : ${allCustomer}">
+                                                <td th:text="${user.username}"></td>
+                                                <td th:text="${user.email}"></td>
+                                                <td th:text="${user.address}"></td>
+                                                <td th:text="${user.phone}"></td>
+                                                <td>
+                                                    <a th:href="@{http://localhost:8888/client/admin/customercontroller/bookinghistory/{customerId}(customerId=${user.id})}" class="btn btn-primary">Booking History</a> | 
+                                                    <span th:if="${user.active == true}">
+                                                        <a th:href="@{/client/admin/customercontroller/disableuser/{id}(id=${user.id})}" class="btn btn-danger">Disable</a>
+                                                    </span>
+                                                    <span th:unless="${user.active == true}">
+                                                        <a th:href="@{/client/admin/customercontroller/activeuser/{id}(id=${user.id})}" class="btn btn-primary">Active</a>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </section>
+                <!-- /.content -->
+            </div>
+        </div>
+        
+        
+        <!-- jQuery -->
+        <script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+        <!-- Bootstrap 4 -->
+        <script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <!-- jsGrid -->
+        <script th:src="@{/admin/plugins/jsgrid/demos/db.js}"></script>
+        <script th:src="@{/admin/plugins/jsgrid/jsgrid.min.js}"></script>
+        <!-- AdminLTE App -->
+        <script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+        <!-- AdminLTE for demo purposes -->
+        <script th:src="@{/admin/dist/js/demo.js}"></script>
+        <!-- Page specific script -->
+    </body>
+</html>
