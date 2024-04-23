@@ -5,7 +5,7 @@
 package fpt.aptech.hotelclient.controller.user;
 
 import fpt.aptech.hotelclient.dto.BookingDto;
-import fpt.aptech.hotelclient.dto.RoomDto;
+import fpt.aptech.hotelclient.dto.YachtDto;
 import fpt.aptech.hotelclient.dto.SearchDto;
 import java.util.List;
 import org.springframework.stereotype.Controller;
@@ -17,58 +17,55 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-/**
- *
- * @author TuanNguyen
- */
+
 @Controller
-@RequestMapping("/client/customer/roomcontroller")
-public class CUSTOMER_RoomController {
+@RequestMapping("/client/customer/yachtcontroller")
+public class CUSTOMER_YachtController {
     
-    String room_api_url = "http://localhost:9999/api/roomcontroller";
+    String yacht_api_url = "http://localhost:9999/api/yachtcontroller";
     String booking_api_url = "http://localhost:9999/api/bookingcontroller";
     
     RestTemplate _restTemplate = new RestTemplate();
     
     @GetMapping("/all")
     public String page(Model model , @RequestParam("userId") int userId) {
-        List<RoomDto> allRoomList = _restTemplate.getForObject(room_api_url+"/allroomactive", List.class);
+        List<YachtDto> allYachtList = _restTemplate.getForObject(yacht_api_url+"/allyachtactive", List.class);
         model.addAttribute("userId", userId);
         model.addAttribute("searchDto", new SearchDto());
-        model.addAttribute("allRoomList", allRoomList);
-        return "users/rooms";
+        model.addAttribute("allYachtList", allYachtList);
+        return "users/yachts";
     }
     
     @GetMapping("/details")
-    public String roomDetailsPage(Model model , @RequestParam("userId") int userId , @RequestParam("roomId") int roomId) {
+    public String yachtDetailsPage(Model model , @RequestParam("userId") int userId , @RequestParam("yachtId") int yachtId) {
         System.out.println(userId);
-        System.out.println(roomId);
+        System.out.println(yachtId);
         
-        RoomDto roomDetail = _restTemplate.getForObject(room_api_url+"/find/"+roomId, RoomDto.class);
+        YachtDto yachtDetail = _restTemplate.getForObject(yacht_api_url+"/find/"+yachtId, YachtDto.class);
         model.addAttribute("userId", userId);
-        model.addAttribute("roomDetail", roomDetail);
-        return "users/room-details";
+        model.addAttribute("yachtDetail", yachtDetail);
+        return "users/yacht-details";
     }
     
-    @PostMapping("/searchRoom")
-    public String searchRoomPage(Model model , @RequestParam("userId") int userId , @ModelAttribute("searchDto") SearchDto searchDto) {
+    @PostMapping("/searchYacht")
+    public String searchYachtPage(Model model , @RequestParam("userId") int userId , @ModelAttribute("searchDto") SearchDto searchDto) {
         System.out.println(searchDto);
-        List<RoomDto> allRoomAvailable = _restTemplate.postForObject(booking_api_url+"/availableroomforbooking", searchDto , List.class);
+        List<YachtDto> allYachtAvailable = _restTemplate.postForObject(booking_api_url+"/availableyachtforbooking", searchDto , List.class);
         model.addAttribute("userId", userId);
         model.addAttribute("searchDto", new SearchDto());
-        model.addAttribute("allRoomList", allRoomAvailable);
-        return "users/rooms";
+        model.addAttribute("allYachtList", allYachtAvailable);
+        return "users/yachts";
     }
     
     @GetMapping("/gotobooking")
-    public String customerGoToBooking(Model model , @RequestParam("userId") int userId , @RequestParam("roomId") int roomId) {
+    public String customerGoToBooking(Model model , @RequestParam("userId") int userId , @RequestParam("yachtId") int yachtId) {
         BookingDto newBookingDto = new BookingDto();
-        newBookingDto.setRoom_id(roomId);
+        newBookingDto.setYacht_id(yachtId);
         newBookingDto.setCustomer_id(userId);
         
         model.addAttribute("userId", userId);
         model.addAttribute("newBookingDto", newBookingDto);
-        return "users/room_booking";
+        return "users/yacht_booking";
     }
     
     @PostMapping("/confirmbookingdetail")
@@ -83,21 +80,21 @@ public class CUSTOMER_RoomController {
         BookingDto bookingDetail = _restTemplate.postForObject(booking_api_url+"/confirmbookingdetail", newBookingDto, BookingDto.class);
         
         if(bookingDetail == null) {
-            BookingDto latestBooking = _restTemplate.getForObject(booking_api_url+"/findthelatestbookingofaroom/"+newBookingDto.getRoom_id(), BookingDto.class);
+            BookingDto latestBooking = _restTemplate.getForObject(booking_api_url+"/findthelatestbookingofayacht/"+newBookingDto.getYacht_id(), BookingDto.class);
             model.addAttribute("userId", userId);
-            model.addAttribute("bookingErrMessage", "This room is already booked, Please choose date after: " + latestBooking.getBooking_to().toString());
-            return "users/room_booking";
+            model.addAttribute("bookingErrMessage", "This yacht is already booked, Please choose date after: " + latestBooking.getBooking_to().toString());
+            return "users/yacht_booking";
         }
         else {
-            if(bookingDetail.getRoom_info().getRoom_capacity() < newBookingDto.getNumber_of_member()){
+            if(bookingDetail.getYacht_info().getYacht_capacity() < newBookingDto.getNumber_of_member()){
                 model.addAttribute("userId", userId);
-                model.addAttribute("bookingErrMessage", "This room capacity is only: " + bookingDetail.getRoom_info().getRoom_capacity() + " people!!!");
-                return "users/room_booking";
+                model.addAttribute("bookingErrMessage", "This yacht capacity is only: " + bookingDetail.getYacht_info().getYacht_capacity() + " people!!!");
+                return "users/yacht_booking";
             }
             else {
                 model.addAttribute("userId", userId);
                 model.addAttribute("newBookingDto", bookingDetail);
-                return "users/room_booking_detail";
+                return "users/yacht_booking_detail";
             }
         }
     }

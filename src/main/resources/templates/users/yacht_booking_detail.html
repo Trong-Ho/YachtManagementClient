@@ -12,7 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <meta name="keywords" content="Hiroto, unica, creative, html"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <title>Hotel Management - Booking Room Detail</title>
+        <title>Hotel Management - Booking Yacht Detail</title>
 
         <link rel="stylesheet" th:href="@{/users/css/bootstrap.min.css}" type="text/css"/>
         <link rel="stylesheet" th:href="@{/users/css/font-awesome.min.css}" type="text/css"/>
@@ -58,33 +58,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <div class="breadcrumb__text">
-                                <h1>Room Booking Detail</h1>
+                                <h1>Yacht Booking Detail</h1>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <section class="room-details spad">
+            <section class="yacht-details spad">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="room__details__content" >
-                                <form action="#" th:action="@{http://localhost:8888/client/customer/roomcontroller/customercreatebooking?userId={userId}(userId=${userId})}" th:object="${newBookingDto}" method="POST">
+                            <div class="yacht__details__content" >
+                                <form action="#" th:action="@{http://localhost:8888/client/customer/yachtcontroller/customercreatebooking?userId={userId}(userId=${userId})}" th:object="${newBookingDto}" method="POST">
                                     <input type="hidden" th:field="*{customer_id}">
-                                        <input type="hidden" th:field="*{room_id}">
+                                        <input type="hidden" th:field="*{yacht_id}">
                                             <div class="row">
                                                 <div class="col-lg-6 p-0 order-lg-2 order-md-2 col-md-6">
-                                                    <div class="room__pic__slider owl-carousel">
-                                                        <img th:src="*{room_info.room_image}" alt="alt"/>
+                                                    <div class="yacht__pic__slider owl-carousel">
+                                                        <img th:src="*{yacht_info.yacht_image}" alt="alt"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-6 p-0 order-lg-1 order-md-1 col-md-6">
-                                                    <div class="room__text" >
-                                                        <h3 th:text="*{room_info.room_no}"></h3>
-                                                        <h2><sup>$</sup><span style="color: goldenrod; font-size: 30px" th:text="*{room_info.room_price}"></span><span>/day</span></h2>
-                                                        <!--                                <h4><span>Descriptions :</span>&emsp;<sup th:text="${item.room_description}"></sup></h4>
-                                                                                        <h4><sup>Stat :</sup>&emsp;<span th:text="${item.room_type_info.room_type_name}"></span></h4>-->
+                                                    <div class="yacht__text" >
+                                                        <h3 th:text="*{yacht_info.yacht_no}"></h3>
+                                                        <h2><sup>$</sup><span style="color: goldenrod; font-size: 30px" th:text="*{yacht_info.yacht_price}"></span><span>/day</span></h2>
+                                                        <!--                                <h4><span>Descriptions :</span>&emsp;<sup th:text="${item.yacht_description}"></sup></h4>
+                                                                                        <h4><sup>Stat :</sup>&emsp;<span th:text="${item.yacht_type_info.yacht_type_name}"></span></h4>-->
                                                         <br/>
                                                         <ul>
                                                             <li><span>Booking From      : </span><input readonly type="text" th:field="*{booking_from}" class="form__input"></li>
@@ -93,14 +93,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                                                             <li><span>Total Day         : </span><i th:text="*{total_day}"></i></li>
                                                             <li><span>Total Price       : </span><i th:text="*{total_price}"></i></li>
-                                                            <li><span>Room Type         : </span><i th:text="*{room_info.room_type_info.room_type_name}"></i></li>
-                                                            <li><span>Room Price        : </span><i th:text="*{room_info.room_price}"></i></li>
+                                                            <li><span>Yacht Type         : </span><i th:text="*{yacht_info.yacht_type_info.yacht_type_name}"></i></li>
+                                                            <li><span>Yacht Price        : </span><i th:text="*{yacht_info.yacht_price}"></i></li>
                                                             <!--<li><span >Status:</span><i th:text="${item.booking_status_info.booking_status_name}"></i></li>-->
-                                                            <!--<li><span>Capacity:</span><i th:text="${roomDetail.room_capacity}"></i></li>-->
-                                                            <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
+                                                            <!--<li><span>Capacity:</span><i th:text="${yachtDetail.yacht_capacity}"></i></li>-->
+                                                            <li><span>Services:</span>Wifi, Television, Bathyacht,...</li>
                                                         </ul>
-                                                        <!--<a th:href="@{/client/customer/roomcontroller/details?userId={userId}&roomId={roomId}(userId=${userId},roomId=${item.id})}">View Details</a>-->
-                                                        <!--<a th:href="@{/client/customer/roomcontroller/gotobooking?userId={userId}&roomId={roomId}(userId=${userId},roomId=${roomDetail.id})}" style="background-color: goldenrod; padding: 10px; border-radius: 10px; color: white;" class="primary-btn">Confirm and Create Booking</a>-->
+                                                        <!--<a th:href="@{/client/customer/yachtcontroller/details?userId={userId}&yachtId={yachtId}(userId=${userId},yachtId=${item.id})}">View Details</a>-->
+                                                        <!--<a th:href="@{/client/customer/yachtcontroller/gotobooking?userId={userId}&yachtId={yachtId}(userId=${userId},yachtId=${yachtDetail.id})}" style="background-color: goldenrod; padding: 10px; border-radius: 10px; color: white;" class="primary-btn">Confirm and Create Booking</a>-->
 
                                                         <input style="background-color: goldenrod; padding: 10px; border: none; border-radius: 10px; color: white;" class="primary-btn" type="submit" value="Confirm Your Booking">
                                                     </div>
@@ -113,20 +113,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                             </div>
                                             </section>
 
-                                            <!--            <form action="#" th:action="@{http://localhost:8888/client/customer/roomcontroller/customercreatebooking?userId={userId}(userId=${userId})}" th:object="${newBookingDto}" method="POST">
+                                            <!--            <form action="#" th:action="@{http://localhost:8888/client/customer/yachtcontroller/customercreatebooking?userId={userId}(userId=${userId})}" th:object="${newBookingDto}" method="POST">
                                                             <input type="text" th:field="*{booking_from}"><br>
                                                             <input type="text" th:field="*{booking_to}"><br>
                                                             <input type="number" th:field="*{number_of_member}"><br>
                                                             <input type="text" th:field="*{customer_id}"><br>
-                                                            <input type="text" th:field="*{room_id}"><br>
+                                                            <input type="text" th:field="*{yacht_id}"><br>
                                                             <div>
                                                                 <p>Total day: <span th:text="*{total_day}"></span></p>
                                                                 <p>Total price: <span th:text="*{total_price}"></span></p>
                                                                 <p>Customer name: <span th:text="*{customer_info.username}"></span></p>
                                                                 <p>Customer phone: <span th:text="*{customer_info.phone}"></span></p>
-                                                                <p>Room No: <span th:text="*{room_info.room_no}"></span></p>
-                                                                <p>Room Price: <span th:text="*{room_info.room_price}"></span></p>
-                                                                <p>Room Type: <span th:text="*{room_info.room_type_info.room_type_name}"></span></p>
+                                                                <p>yacht No: <span th:text="*{yacht_info.yacht_no}"></span></p>
+                                                                <p>yacht Price: <span th:text="*{yacht_info.yacht_price}"></span></p>
+                                                                <p>yacht Type: <span th:text="*{yacht_info.yacht_type_info.yacht_type_name}"></span></p>
                                                             </div>
                                             
                                                             <input type="submit" value="Confirm and Create Booking">

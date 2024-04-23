@@ -9,7 +9,7 @@
         <meta name="keywords" content="Hiroto, unica, creative, html"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        <title>Hotel Management - Customer Profile</title>
+        <title>Customer Profile</title>
         <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css"/>
         <!-- Google Font -->
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&display=swap"
@@ -142,7 +142,7 @@
                                         <tr class="jsgrid-header-row">
                                             <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking From</th>
                                             <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking To</th>
-                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Room No</th>
+                                            <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Yacht No</th>
                                             <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Total Price</th>
                                             <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Booking Current</th>
                                             <th style="padding-left: 20px; padding-right: 20px;" class="jsgrid-header-cell jsgrid-header-sortable">Action</th>
@@ -152,7 +152,7 @@
                                         <tr th:each="item : ${bookingList}">
                                             <td th:text="${item.booking_from}"></td>
                                             <td th:text="${item.booking_to}"></td>
-                                            <td th:text="${item.room_info.room_no}"></td>
+                                            <td th:text="${item.yacht_info.yacht_no}"></td>
                                             <td th:text="${item.total_price}"></td>
                                             <td th:text="${item.booking_current_info.booking_current_name}"></td>
                                             <td>

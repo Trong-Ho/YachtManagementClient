@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- *
- * @author PC
- */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,7 +20,7 @@ public class ReviewDto {
     private UserDto user;
     private String username;
     
-    private int room_id;
-    private RoomDto room;
-    private String room_no;
+    private int yacht_id;
+    private YachtDto yacht;
+    private String yacht_no;
 }

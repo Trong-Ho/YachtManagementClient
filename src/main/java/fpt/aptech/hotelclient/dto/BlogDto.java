@@ -4,7 +4,7 @@
  */
 package fpt.aptech.hotelclient.dto;
 
-import fpt.aptech.hotelclient.models.Room;
+
 import java.util.Date;
 import org.springframework.web.multipart.MultipartFile;
 

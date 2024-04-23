@@ -4,7 +4,7 @@
  */
 package fpt.aptech.hotelclient.controller.user;
 
-import fpt.aptech.hotelclient.dto.RoomDto;
+import fpt.aptech.hotelclient.dto.YachtDto;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,29 +12,26 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
-/**
- *
- * @author ASUS
- */
-@Controller
-@RequestMapping("/user/room")
-public class RoomController {
 
-    String room_api_url = "http://localhost:9999/api/roomcontroller";
+@Controller
+@RequestMapping("/user/yacht")
+public class YachtController {
+
+    String yacht_api_url = "http://localhost:9999/api/yachtcontroller";
     RestTemplate _restTemplate = new RestTemplate();
 
     @GetMapping("/all")
     public String page(Model model) {
-        List<RoomDto> allRoomList = _restTemplate.getForObject(room_api_url + "/allroomsortedbyactive", List.class);
+        List<YachtDto> allRoomList = _restTemplate.getForObject(yacht_api_url + "/allyachtsortedbyactive", List.class);
         model.addAttribute("allRoomList", allRoomList);
-        return "/users/rooms";
+        return "/users/yachts";
     }
 
-    @GetMapping("/{roomId}/details")
-    public String details(@PathVariable("roomId") int roomId, Model model) {
-        RoomDto room = _restTemplate.getForObject(room_api_url + "/find/" + roomId, RoomDto.class);
+    @GetMapping("/{yachtId}/details")
+    public String details(@PathVariable("yachtId") int yachtId, Model model) {
+        YachtDto room = _restTemplate.getForObject(yacht_api_url + "/find/" + yachtId, YachtDto.class);
         model.addAttribute("room", room);
-        return "/users/room-details";
+        return "/users/yacht-details";
     }
 
 }

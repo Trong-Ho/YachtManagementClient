@@ -10,13 +10,15 @@ import lombok.NoArgsConstructor;
 
 /**
  *
- * @author TuanNguyen
+ * @author PC
  */
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoomTypeDto {
+public class Feedback {
     private int id;
-    private String room_type_name;
+    private String comment;
+    private int rating;
+    private int yacht_id;
+    private int user_id;
 }

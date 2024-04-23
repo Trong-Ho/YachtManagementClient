@@ -4,25 +4,15 @@
  */
 package fpt.aptech.hotelclient.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ServicedvDto {
-    private Integer id;
-    private String name;
-    private double price;
-    private String description;
-    private Integer quantity;
-    private Integer serviceDuration;
-    private boolean status;
-    private MultipartFile image;
-
-    
+public class YachtTypeDto {
+    private int id;
+    private String yacht_type_name;
 }

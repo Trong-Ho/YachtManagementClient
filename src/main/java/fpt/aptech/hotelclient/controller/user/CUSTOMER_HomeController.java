@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
- * @author TuanNguyen
+ * @PC
  */
 @Controller
 @RequestMapping("/client/customer/homecontroller")

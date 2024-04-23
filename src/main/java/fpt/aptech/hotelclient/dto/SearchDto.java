@@ -10,10 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- *
- * @author TuanNguyen
- */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,5 +23,5 @@ public class SearchDto {
     private double from_price;
     private double to_price;
     
-    private int room_type_id;
+    private int yacht_type_id;
 }

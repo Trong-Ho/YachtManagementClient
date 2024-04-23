@@ -5,7 +5,7 @@
 package fpt.aptech.hotelclient.controller.admin;
 
 import fpt.aptech.hotelclient.dto.BookingDto;
-import fpt.aptech.hotelclient.dto.RoomDto;
+import fpt.aptech.hotelclient.dto.YachtDto;
 import fpt.aptech.hotelclient.dto.SearchDto;
 import fpt.aptech.hotelclient.dto.UserDto;
 import java.util.List;
@@ -27,8 +27,8 @@ import org.springframework.web.client.RestTemplate;
 public class ADMIN_BookingController {
     String booking_api_url = "http://localhost:9999/api/bookingcontroller";
     
-    String room_api_url = "http://localhost:9999/api/roomcontroller";
-    String roomType_api_url = "http://localhost:9999/api/roomtypecontroller";
+    String yacht_api_url = "http://localhost:9999/api/yachtcontroller";
+    String yachtType_api_url = "http://localhost:9999/api/yachttypecontroller";
     String bookingStatus_api_url = "http://localhost:9999/api/bookingstatuscontroller";
     String user_api_url = "http://localhost:9999/api/users";
     
@@ -41,27 +41,27 @@ public class ADMIN_BookingController {
         return "admin/booking/index";
     }
     
-    @GetMapping("/gotoroomtobooking")
-    public String goToRoomToBooking(Model model) {
-        List<RoomDto> allRoomActiveAndVacancy = _restTemplate.getForObject(room_api_url+"/all", List.class);
+    @GetMapping("/gotoyachttobooking")
+    public String goToYachtToBooking(Model model) {
+        List<YachtDto> allYachtActiveAndVacancy = _restTemplate.getForObject(yacht_api_url+"/all", List.class);
         model.addAttribute("searchDto", new SearchDto());
-        model.addAttribute("allRoomActiveAndVacancy", allRoomActiveAndVacancy);
-        return "admin/booking/roomtobooking";
+        model.addAttribute("allYachtActiveAndVacancy", allYachtActiveAndVacancy);
+        return "admin/booking/yachttobooking";
     }
     
-    @PostMapping("/availableroomtobooking") 
-    public String availableRoomToBooking(Model model , @ModelAttribute("searchDto") SearchDto searchDto) {
-        List<RoomDto> allRoomAvailable = _restTemplate.postForObject(booking_api_url+"/availableroomforbooking", searchDto , List.class);
+    @PostMapping("/availableyachttobooking") 
+    public String availableYachtToBooking(Model model , @ModelAttribute("searchDto") SearchDto searchDto) {
+        List<YachtDto> allYachtAvailable = _restTemplate.postForObject(booking_api_url+"/availableyachtforbooking", searchDto , List.class);
         model.addAttribute("searchDto", searchDto);
-        model.addAttribute("allRoomActiveAndVacancy", allRoomAvailable);
-        return "admin/booking/roomtobooking";
+        model.addAttribute("allYachtActiveAndVacancy", allYachtAvailable);
+        return "admin/booking/yachttobooking";
     }
     
-    @GetMapping("/gotobookingforguest/{roomId}")
-    public String goToBookingForGuest(Model model , @PathVariable("roomId") int roomId) {
-//        model.addAttribute("roomId", roomId);
+    @GetMapping("/gotobookingforguest/{yachtId}")
+    public String goToBookingForGuest(Model model , @PathVariable("yachtId") int yachtId) {
+//        model.addAttribute("yachtId", yachtId);
         BookingDto newBookingDto = new BookingDto();
-        newBookingDto.setRoom_id(roomId);
+        newBookingDto.setYacht_id(yachtId);
         model.addAttribute("newBookingDto", newBookingDto);
         return "admin/booking/createforguest";
     }

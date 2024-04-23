@@ -31,7 +31,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <h2>Admin Booking Management</h2>
                             </div>
                             <div>
-                                <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/gotoroomtobooking}" class="btn btn-primary">Create booking for Guest</a>
+                                <a th:href="@{http://localhost:8888/client/admin/bookingcontroller/gotoyachttobooking}" class="btn btn-primary">Create booking for Guest</a>
                             </div>
 
                             <div class="card-body">
@@ -42,7 +42,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 <tr class="jsgrid-header-row">
                                                     <th class="jsgrid-header-cell jsgrid-header-sortable">Booking From</th>
                                                     <th class="jsgrid-header-cell jsgrid-header-sortable">Booking To</th>
-                                                    <th class="jsgrid-header-cell jsgrid-header-sortable">Room No</th>
+                                                    <th class="jsgrid-header-cell jsgrid-header-sortable">Yacht No</th>
                                                     <th class="jsgrid-header-cell jsgrid-header-sortable">Total Price</th>
                                                     <th class="jsgrid-header-cell jsgrid-header-sortable">Customer Phone</th>
                                                     <th class="jsgrid-header-cell jsgrid-header-sortable">Booking Current</th>
@@ -53,7 +53,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 <tr th:each="item : ${bookingList}">
                                                     <td th:text="${item.booking_from}"></td>
                                                     <td th:text="${item.booking_to}"></td>
-                                                    <td th:text="${item.room_info.room_no}"></td>
+                                                    <td th:text="${item.yacht_info.yacht_no}"></td>
                                                     <td th:text="${item.total_price}"></td>
                                                     <td th:text="${item.customer_info.phone}"></td>
                                                     <td th:text="${item.booking_current_info.booking_current_name}"></td>
